@@ -6,3 +6,14 @@ def base64_de(input):
         return str(encodestr,'utf-8')
     except:
         return "格式错误"
+def assic_de(input):
+    try:
+        sum = ''
+        print(sum)
+        encodestr = input.split(' ')
+        for i in encodestr:
+            sum += chr((eval(i)))
+        return sum
+    except:
+        return "格式错误"
+

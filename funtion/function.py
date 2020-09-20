@@ -1,6 +1,6 @@
 import base64
 import hashlib
-
+import binascii
 
 def base64_en(input):
     try:
@@ -22,5 +22,21 @@ def md5_en(input):
         h1 = hashlib.md5()
         h1.update(input.encode(encoding='utf-8'))
         return h1.hexdigest()
+    except:
+        return "格式错误"
+
+def hex_en_0x(input):
+    try:
+        sum = ''
+        for i in input:
+            str_bin = i.encode('utf-8')
+            sum += '\\0x'+binascii.hexlify(str_bin).decode('utf-8')
+        return sum
+    except:
+        return "格式错误"
+def hex_en(input):
+    try:
+        str_bin = input.encode('utf-8')
+        return binascii.hexlify(str_bin).decode('utf-8')
     except:
         return "格式错误"

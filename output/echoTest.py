@@ -59,9 +59,11 @@ def echo(update, context):
 def en(update, context):
     key = ' '.join(context.args)
     jj = update.message.text +'\nbase64加密: ' + function.base64_en(key) + '\nAssic加密: ' + function.assic_en(key) + '\nMD5加密: ' + function.md5_en(key)
+    jj = jj + '\n转16进制字符串: ' + function.hex_en(key) + '\n转16进制0x类型: ' + function.hex_en_0x(key)
     context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
 
 def de(update, context):
     key = ' '.join(context.args)
-    jj = update.message.text +'\nbase6解密: ' + function_de.base64_de(key) + '\n'
+    jj = update.message.text +'\nbase6解密: ' + function_de.base64_de(key) + '\nAssic解密'
+    jj = jj + function_de.assic_de()
     context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
