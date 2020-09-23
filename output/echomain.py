@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 
 from telegram_bot.config import config_info
-from telegram_bot.output.echoTest import button, en, de, echo
+from telegram_bot.output.echoTest import button, en, de, echo, N_calc ,K_calc
 
 
 def main():
@@ -17,7 +17,8 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("EN", en))
     dp.add_handler(CommandHandler("DE", de))
-
+    dp.add_handler(CommandHandler("N", N_calc))
+    dp.add_handler(CommandHandler("K", K_calc))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))

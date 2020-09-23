@@ -53,7 +53,10 @@ def help_command(update, context):
 
 def echo(update, context):
     """Echo the user message."""
-    update.message.reply_text("加密数据请输入: /EN xxxxxxxx\n解密密数据请输入: /DE xxxxxxxx\n")
+    jj = '加密数据请输入: /EN xxxxxxxx\n解密密数据请输入: /DE xxxxxxxx\n无杠杆火币交易风险计算(已USDT为单位):\n已买入价格x | 预计盈利s | 买入总金额base \neg输入: /N 89 30 2000\n'
+    jj = jj + '逐仓杠杆交易做空计算(已USDT为单位):\n已卖出价格x | 预计盈利s | 本金base | 做空倍数z | 借币天数 day\neg输入: /K 89 30 2000 2 2\n'
+    jj = jj + '详细推理过程https://yll-f1.top/2020/09/20/%E7%AE%80%E5%8D%95%E7%9A%84Telegram%E6%9C%BA%E5%99%A8%E4%BA%BA/\n'
+    update.message.reply_text(jj)
 
 
 def en(update, context):
@@ -68,7 +71,12 @@ def de(update, context):
     jj = jj + function_de.assic_de(key)
     context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
 
-def N(update, context):
+def N_calc(update, context):
     key = ' '.join(context.args)
-    jj = update.message.text +'\n' + risk_computation(key)
+    jj = update.message.text +'\n' + risk_computation.normal(key)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
+
+def K_calc(update, context):
+    key = ' '.join(context.args)
+    jj = update.message.text + '\n' + risk_computation.Kong(key)
     context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
