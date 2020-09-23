@@ -16,7 +16,7 @@ import logging
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
-from telegram_bot.funtion import function, function_de
+from telegram_bot.funtion import function, function_de ,risk_computation
 
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -65,5 +65,10 @@ def en(update, context):
 def de(update, context):
     key = ' '.join(context.args)
     jj = update.message.text +'\nbase6解密: ' + function_de.base64_de(key) + '\nAssic解密'
-    jj = jj + function_de.assic_de()
+    jj = jj + function_de.assic_de(key)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=jj)
+
+def N(update, context):
+    key = ' '.join(context.args)
+    jj = update.message.text +'\n' + risk_computation(key)
     context.bot.send_message(chat_id=update.effective_chat.id, text=jj)

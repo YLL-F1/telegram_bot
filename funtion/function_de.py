@@ -9,7 +9,6 @@ def base64_de(input):
 def assic_de(input):
     try:
         sum = ''
-        print(sum)
         encodestr = input.split(' ')
         for i in encodestr:
             sum += chr((eval(i)))
